@@ -1,6 +1,7 @@
 package com.treasury.kpstreasury.models.entity;
 
 
+import com.treasury.kpstreasury.utils.TestsUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,19 +16,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @ExtendWith(SpringExtension.class)
-public class UserTests {
+public class UserEntityTests {
+
+    private final TestsUtil testsUtil = new TestsUtil();
 
     @Test
     void shouldCreateUserWithRequiredFields() {
-        UserEntity user = new UserEntity();
-        user.setUsername("John Doe");
-        user.setPassword("uncoded_password");
-        user.setEmail("johndoe@gmail.com");
-        user.setFirstName("John");
-        user.setLastName("Doe");
-        user.setRole(Role.TREASURY);
+        UserEntity user = testsUtil.createUserEntityA();
 
-        assertThat(user.getUsername()).isEqualTo("John Doe");
+        assertThat(user.getUsername()).isEqualTo("johnDoe");
         assertThat(user.getEmail()).isEqualTo("johndoe@gmail.com");
         assertThat(user.getRole()).isEqualTo(Role.TREASURY);
         assertThat(user.isEnabled()).isTrue();
@@ -35,7 +32,7 @@ public class UserTests {
 
     @Test
     void ShouldImplementUserDetailsCorrectly() {
-        UserEntity user = new UserEntity();
+        UserEntity user = testsUtil.createUserEntityA();
         user.setRole(Role.ADMIN);
         user.setEnabled(true);
 

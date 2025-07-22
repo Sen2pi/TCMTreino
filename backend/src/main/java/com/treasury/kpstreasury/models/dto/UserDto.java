@@ -37,7 +37,7 @@ public class UserDto {
     @NotNull(message= "Role is mandatory")
     private Role role;
 
-    private boolean enabled;
+    private boolean enabled = true;
 
     private LocalDateTime createdAt;
 }

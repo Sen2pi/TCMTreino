@@ -1,7 +1,7 @@
 <img src="logo.png" class="logo" width="700"/>
 
 
-# 🏛️ KPSTreasury - Enterprise Treasury & Collateral Management System
+# 🏛️ TCMTreino - Enterprise Treasury & Collateral Management System
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)

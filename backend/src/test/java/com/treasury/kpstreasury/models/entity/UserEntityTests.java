@@ -25,7 +25,7 @@ public class UserEntityTests {
     void shouldCreateUserWithRequiredFields() {
         UserEntity user = testsUtil.createUserEntityA();
 
-        assertThat(user.getUsername()).isEqualTo("johnDoe");
+        assertThat(user.getUsername()).isEqualTo("treasury.user");
         assertThat(user.getEmail()).isEqualTo("johndoe@gmail.com");
         assertThat(user.getRole()).isEqualTo(Role.TREASURY);
         assertThat(user.isEnabled()).isTrue();

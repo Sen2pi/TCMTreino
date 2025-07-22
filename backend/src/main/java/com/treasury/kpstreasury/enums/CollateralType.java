@@ -1,4 +1,4 @@
-package com.treasury.kpstreasury.models.entity;
+package com.treasury.kpstreasury.enums;
 
 public enum CollateralType {
     GOVERNMENT_BOND,

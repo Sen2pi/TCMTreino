@@ -1,5 +1,8 @@
 package com.treasury.kpstreasury.models.entity;
 
+import com.treasury.kpstreasury.enums.CollateralStatus;
+import com.treasury.kpstreasury.enums.CollateralType;
+import com.treasury.kpstreasury.enums.Rating;
 import com.treasury.kpstreasury.utils.TestsUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,6 +1,9 @@
 package com.treasury.kpstreasury.models.entity;
 
 
+import com.treasury.kpstreasury.enums.CollateralStatus;
+import com.treasury.kpstreasury.enums.CollateralType;
+import com.treasury.kpstreasury.enums.Rating;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

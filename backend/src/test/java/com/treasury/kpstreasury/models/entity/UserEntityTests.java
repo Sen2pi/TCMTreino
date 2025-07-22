@@ -1,6 +1,7 @@
 package com.treasury.kpstreasury.models.entity;
 
 
+import com.treasury.kpstreasury.enums.Role;
 import com.treasury.kpstreasury.utils.TestsUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

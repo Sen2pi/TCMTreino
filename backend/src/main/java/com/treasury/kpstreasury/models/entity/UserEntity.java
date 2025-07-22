@@ -1,6 +1,7 @@
 package com.treasury.kpstreasury.models.entity;
 
 
+import com.treasury.kpstreasury.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,5 +1,7 @@
 package com.treasury.kpstreasury.models.entity;
 
+import com.treasury.kpstreasury.enums.AccountStatus;
+import com.treasury.kpstreasury.enums.AccountType;
 import com.treasury.kpstreasury.utils.TestsUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

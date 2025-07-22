@@ -1,4 +1,4 @@
-package com.treasury.KPStreasury;
+package com.treasury.kpstreasury;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

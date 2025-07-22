@@ -51,7 +51,7 @@ public class CollateralEntity {
     @Enumerated(EnumType.STRING)
     private Rating rating;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDate maturityDate;
 
     @Column(nullable = false, length = 20)

@@ -1,4 +1,5 @@
-<div align="center">
+<img src="logo.png" class="logo" width="120"/>
+
 
 # 🏛️ KPSTreasury - Enterprise Treasury & Collateral Management System
 

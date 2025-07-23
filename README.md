@@ -1,4 +1,4 @@
-<img src="logo.png" alt="TCM Treino Logo" width="320"/>
+<img src="logo.png" alt="TCM Treino Logo" width="600"/>
 
 # TCM Treino – Treasury & Collateral Management
 

@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }) => {
       dispatch({ type: "SET_LOADING", payload: true });
       const response = await authService.login(credentials);
       
-      localStorage.setItem("token", response.jwt);
+      localStorage.setItem("token", response.token);
       localStorage.setItem("user", JSON.stringify({
         username: response.username,
         email: response.email,
@@ -112,7 +112,7 @@ export const AuthProvider = ({ children }) => {
             email: response.email,
             role: response.role
           },
-          token: response.jwt
+          token: response.token
         }
       });
 

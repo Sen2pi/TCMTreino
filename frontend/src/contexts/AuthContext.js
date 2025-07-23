@@ -25,6 +25,19 @@ const authReducer = (state, action) => {
         loading: false,
         error: action.payload
       };
+    case "REGISTER_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        registerSuccess: action.payload
+      };
+    case "REGISTER_ERROR":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload
+      };
     case "LOGOUT":
       return {
         ...state,
@@ -32,10 +45,13 @@ const authReducer = (state, action) => {
         token: null,
         isAuthenticated: false,
         loading: false,
-        error: null
+        error: null,
+        registerSuccess: null
       };
     case "CLEAR_ERROR":
       return { ...state, error: null };
+    case "CLEAR_REGISTER_SUCCESS":
+      return { ...state, registerSuccess: null };
     default:
       return state;
   }
@@ -46,7 +62,8 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: false,
   loading: true,
-  error: null
+  error: null,
+  registerSuccess: null
 };
 
 export const AuthProvider = ({ children }) => {
@@ -109,6 +126,26 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const register = async (userData) => {
+    try {
+      dispatch({ type: "SET_LOADING", payload: true });
+      const response = await authService.register(userData);
+      
+      dispatch({
+        type: "REGISTER_SUCCESS",
+        payload: response
+      });
+
+      return response;
+    } catch (error) {
+      dispatch({
+        type: "REGISTER_ERROR",
+        payload: error.response?.data || "Registration failed"
+      });
+      throw error;
+    }
+  };
+
   const logout = () => {
     authService.logout();
     dispatch({ type: "LOGOUT" });
@@ -118,11 +155,17 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "CLEAR_ERROR" });
   };
 
+  const clearRegisterSuccess = () => {
+    dispatch({ type: "CLEAR_REGISTER_SUCCESS" });
+  };
+
   const value = {
     ...state,
     login,
+    register,
     logout,
-    clearError
+    clearError,
+    clearRegisterSuccess
   };
 
   return (

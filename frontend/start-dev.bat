@@ -1,0 +1,6 @@
+@echo off
+echo Iniciando o servidor de desenvolvimento React...
+echo Configurando Node.js para compatibilidade com OpenSSL...
+set NODE_OPTIONS=--openssl-legacy-provider
+npm start
+pause 

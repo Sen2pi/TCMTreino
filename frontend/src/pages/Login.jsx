@@ -77,6 +77,10 @@ export default function Login() {
     setShowPassword(!showPassword);
   };
 
+  const handleGoToRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <Container component="main" maxWidth="sm">
       <Box
@@ -216,11 +220,22 @@ export default function Login() {
                     variant="contained"
                     size="large"
                     disabled={!credentials.username || !credentials.password}
-                    sx={{ py: 1.5 }}
+                    sx={{ py: 1.5, mb: 2 }}
                   >
-                    Sign In
+                    Entrar
                   </AnimatedButton>
                 )}
+              </Box>
+
+              <Box sx={{ textAlign: "center" }}>
+                <AnimatedButton
+                  fullWidth
+                  variant="text"
+                  onClick={handleGoToRegister}
+                  disabled={isSubmitting}
+                >
+                  Não tem uma conta? Registe-se
+                </AnimatedButton>
               </Box>
             </Box>
           </Paper>

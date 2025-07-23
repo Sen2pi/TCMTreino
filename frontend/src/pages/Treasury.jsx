@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
 import {
   Box,
   Grid,
@@ -77,9 +78,13 @@ export default function Treasury() {
     }
   };
 
+  const { isAuthenticated, token } = useAuth();
+
   useEffect(() => {
-    loadAccounts();
-  }, []);
+    if (isAuthenticated && token) {
+      loadAccounts();
+    }
+  }, [isAuthenticated, token]);
 
   const showSnackbar = (message, severity = "success") => {
     setSnackbar({ open: true, message, severity });

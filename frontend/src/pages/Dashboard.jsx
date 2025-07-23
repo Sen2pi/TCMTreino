@@ -57,7 +57,7 @@ const StatCard = ({ title, value, icon, color, subtitle, delay = 0 }) => (
 );
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  const { user, isAuthenticated, token } = useAuth();
   const [loading, setLoading] = useState(true);
   const [dashboardData, setDashboardData] = useState({
     totalBalance: 0,
@@ -122,8 +122,11 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    loadDashboardData();
-  }, []);
+    // Only load data if user is authenticated and token exists
+    if (isAuthenticated && token) {
+      loadDashboardData();
+    }
+  }, [isAuthenticated, token]);
 
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {

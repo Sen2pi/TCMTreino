@@ -57,10 +57,12 @@ const authReducer = (state, action) => {
   }
 };
 
+const initialToken = localStorage.getItem("token");
+const initialUser = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
 const initialState = {
-  user: null,
-  token: localStorage.getItem("token"),
-  isAuthenticated: false,
+  user: initialUser,
+  token: initialToken,
+  isAuthenticated: !!initialToken,
   loading: true,
   error: null,
   registerSuccess: null
@@ -72,14 +74,18 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("token");
-      if (token) {
+      const user = localStorage.getItem("user");
+      
+      if (token && user) {
         try {
-          const user = await authService.getCurrentUser();
+          // Parse stored user data
+          const userData = JSON.parse(user);
           dispatch({
             type: "LOGIN_SUCCESS",
-            payload: { user, token }
+            payload: { user: userData, token }
           });
         } catch (error) {
+          // Only clear if user data is corrupted
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           dispatch({ type: "LOGOUT" });
@@ -93,36 +99,20 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (credentials) => {
+    dispatch({ type: "SET_LOADING", payload: true });
     try {
-      dispatch({ type: "SET_LOADING", payload: true });
       const response = await authService.login(credentials);
-      
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("user", JSON.stringify({
-        username: response.username,
-        email: response.email,
-        role: response.role
-      }));
-
-      dispatch({
-        type: "LOGIN_SUCCESS",
-        payload: {
-          user: {
-            username: response.username,
-            email: response.email,
-            role: response.role
-          },
-          token: response.token
-        }
-      });
-
-      return response;
+      const { token, ...user } = response;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      // Adicionando log para debug
+      console.log("[AuthContext] Token salvo no localStorage:", token);
+      console.log("[AuthContext] Usuário salvo:", user);
+      dispatch({ type: "LOGIN_SUCCESS", payload: { user, token } });
+      return { success: true };
     } catch (error) {
-      dispatch({
-        type: "LOGIN_ERROR",
-        payload: error.response?.data || "Login failed"
-      });
-      throw error;
+      dispatch({ type: "LOGIN_ERROR", payload: error?.response?.data || "Erro ao fazer login" });
+      return { success: false, error: error?.response?.data || "Erro ao fazer login" };
     }
   };
 
@@ -159,13 +149,28 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "CLEAR_REGISTER_SUCCESS" });
   };
 
+  const validateToken = async () => {
+    try {
+      const user = await authService.getCurrentUser();
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: { user, token: state.token }
+      });
+      return true;
+    } catch (error) {
+      dispatch({ type: "LOGOUT" });
+      return false;
+    }
+  };
+
   const value = {
     ...state,
     login,
     register,
     logout,
     clearError,
-    clearRegisterSuccess
+    clearRegisterSuccess,
+    validateToken
   };
 
   return (

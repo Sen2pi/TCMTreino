@@ -64,8 +64,11 @@ export default function Login() {
     setIsSubmitting(true);
     
     try {
-      await login(credentials);
-      navigate("/dashboard");
+      const result = await login(credentials);
+      if (result.success) {
+        // Navigation handled by useEffect above
+        console.log("Login successful");
+      }
     } catch (err) {
       console.error("Login failed:", err);
     } finally {

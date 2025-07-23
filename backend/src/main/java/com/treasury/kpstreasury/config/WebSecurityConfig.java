@@ -62,6 +62,9 @@ public class WebSecurityConfig {
                 // Public endpoints
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/demo/**").permitAll()
+                .requestMatchers("/favicon.ico").permitAll()
+                .requestMatchers("/actuator/health").permitAll()
+                .requestMatchers("/error").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/api/users/check-username").permitAll()
                 .requestMatchers("/api/users/check-email").permitAll()
@@ -70,10 +73,10 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/users/**").hasRole("ADMIN")
                 
                 // Treasury endpoints
-                .requestMatchers("/api/treasury/**").hasAnyRole("ADMIN", "TREASURY_MANAGER", "TREASURY_VIEWER")
+                .requestMatchers("/api/treasury/**").hasAnyRole("ADMIN", "TREASURY")
                 
                 // Collateral endpoints
-                .requestMatchers("/api/collateral/**").hasAnyRole("ADMIN", "COLLATERAL_MANAGER", "COLLATERAL_VIEWER")
+                .requestMatchers("/api/collateral/**").hasAnyRole("ADMIN", "COLLATERAL")
                 
                 // All other endpoints require authentication
                 .anyRequest().authenticated()

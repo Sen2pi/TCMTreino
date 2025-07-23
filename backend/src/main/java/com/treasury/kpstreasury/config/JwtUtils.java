@@ -16,7 +16,7 @@ import java.util.Date;
 @Slf4j
 public class JwtUtils {
 
-    @Value("${app.jwtSecret:kpsTreasurySecretKeyForJWTTokenGeneration}")
+    @Value("${app.jwtSecret}")
     private String jwtSecret;
 
     @Value("${app.jwtExpirationMs:86400000}")
@@ -54,6 +54,7 @@ public class JwtUtils {
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken);
+            log.debug("JWT token validation successful");
             return true;
         } catch (MalformedJwtException e) {
             log.error("Invalid JWT token: {}", e.getMessage());
@@ -63,6 +64,8 @@ public class JwtUtils {
             log.error("JWT token is unsupported: {}", e.getMessage());
         } catch (IllegalArgumentException e) {
             log.error("JWT claims string is empty: {}", e.getMessage());
+        } catch (Exception e) {
+            log.error("JWT token validation failed: {}", e.getMessage());
         }
 
         return false;

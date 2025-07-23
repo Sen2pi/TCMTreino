@@ -5,7 +5,14 @@
       "Bash(mkdir:*)",
       "Bash(mvn:*)",
       "Bash(copy:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(where kafka-server-start)",
+      "Bash(docker-compose:*)",
+      "Bash(java:*)",
+      "Bash(npm run start:*)",
+      "Bash(powershell:*)",
+      "Bash(curl:*)",
+      "Bash(cmd /c:*)"
     ],
     "deny": []
   }

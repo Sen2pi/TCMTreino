@@ -15,9 +15,9 @@ import {
   AccountCircle,
   Lock,
   Visibility,
-  VisibilityOff,
-  Dashboard as DashboardIcon
+  VisibilityOff
 } from "@mui/icons-material";
+import logo from "../assets/logo.png";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
@@ -116,12 +116,16 @@ export default function Login() {
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <DashboardIcon 
-                  sx={{ 
-                    fontSize: 48, 
-                    color: "primary.main", 
-                    mb: 2 
-                  }} 
+                <Box
+                  component="img"
+                  src={logo}
+                  alt="KPS Treasury Logo"
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    mb: 2,
+                    objectFit: "contain"
+                  }}
                 />
               </motion.div>
               

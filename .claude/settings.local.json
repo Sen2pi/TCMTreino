@@ -3,7 +3,9 @@
     "allow": [
       "Bash(mvn test:*)",
       "Bash(mkdir:*)",
-      "Bash(mvn:*)"
+      "Bash(mvn:*)",
+      "Bash(copy:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }

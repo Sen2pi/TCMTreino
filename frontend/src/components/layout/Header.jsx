@@ -13,9 +13,9 @@ import {
 import {
   Menu as MenuIcon,
   AccountCircle,
-  Logout,
-  Dashboard as DashboardIcon
+  Logout
 } from "@mui/icons-material";
+import logo from "../../assets/logo.png";
 import { useAuth } from "../../contexts/AuthContext";
 import ThemeToggle from "../common/ThemeToggle";
 
@@ -49,7 +49,17 @@ export default function Header({ onMenuClick }) {
           <MenuIcon />
         </IconButton>
         
-        <DashboardIcon sx={{ mr: 1 }} />
+        <Box
+          component="img"
+          src={logo}
+          alt="KPS Treasury Logo"
+          sx={{
+            width: 32,
+            height: 32,
+            mr: 2,
+            objectFit: "contain"
+          }}
+        />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           KPS Treasury Management
         </Typography>

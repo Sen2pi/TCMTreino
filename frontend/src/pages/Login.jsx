@@ -125,18 +125,14 @@ export default function Login() {
                   src={logo}
                   alt="KPS Treasury Logo"
                   sx={{
-                    width: 80,
-                    height: 80,
+                    width: 400,
+                    height: 250,
                     mb: 2,
                     objectFit: "contain"
                   }}
                 />
               </motion.div>
-              
-              <Typography component="h1" variant="h4" gutterBottom>
-                KPS Treasury
-              </Typography>
-              
+
               <Typography variant="body2" color="text.secondary" textAlign="center">
                 Treasury & Collateral Management System
               </Typography>

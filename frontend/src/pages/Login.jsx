@@ -222,7 +222,7 @@ export default function Login() {
                     disabled={!credentials.username || !credentials.password}
                     sx={{ py: 1.5, mb: 2 }}
                   >
-                    Entrar
+                    Login
                   </AnimatedButton>
                 )}
               </Box>
@@ -234,7 +234,7 @@ export default function Login() {
                   onClick={handleGoToRegister}
                   disabled={isSubmitting}
                 >
-                  Não tem uma conta? Registe-se
+                  Don't have an account? Register
                 </AnimatedButton>
               </Box>
             </Box>

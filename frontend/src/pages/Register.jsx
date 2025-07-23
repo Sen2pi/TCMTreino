@@ -74,44 +74,44 @@ export default function Register() {
 
     // Username validation
     if (!formData.username) {
-      newErrors.username = "Username é obrigatório";
+      newErrors.username = "Username is required";
     } else if (formData.username.length < 3) {
-      newErrors.username = "Username deve ter pelo menos 3 caracteres";
+      newErrors.username = "Username must have at least 3 characters";
     } else if (formData.username.length > 50) {
-      newErrors.username = "Username não pode ter mais de 50 caracteres";
+      newErrors.username = "Username cannot have more than 50 characters";
     }
 
     // Password validation
     if (!formData.password) {
-      newErrors.password = "Password é obrigatória";
+      newErrors.password = "Password is required";
     } else if (formData.password.length < 8) {
-      newErrors.password = "Password deve ter pelo menos 8 caracteres";
+      newErrors.password = "Password must have at least 8 characters";
     } else if (!/(?=.*[A-Z])(?=.*[!@#$%^&*])/.test(formData.password)) {
-      newErrors.password = "Password deve conter pelo menos 1 maiúscula e 1 símbolo";
+      newErrors.password = "Password must contain at least 1 uppercase letter and 1 symbol";
     }
 
     // Confirm password validation
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = "Confirmação de password é obrigatória";
+      newErrors.confirmPassword = "Password confirmation is required";
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords não coincidem";
+      newErrors.confirmPassword = "Passwords do not match";
     }
 
     // Email validation
     if (!formData.email) {
-      newErrors.email = "Email é obrigatório";
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Email deve ser válido";
+      newErrors.email = "Email must be valid";
     }
 
     // First name validation
     if (!formData.firstName) {
-      newErrors.firstName = "Nome é obrigatório";
+      newErrors.firstName = "First name is required";
     }
 
     // Last name validation
     if (!formData.lastName) {
-      newErrors.lastName = "Apelido é obrigatório";
+      newErrors.lastName = "Last name is required";
     }
 
     setErrors(newErrors);
@@ -220,11 +220,11 @@ export default function Register() {
               </motion.div>
               
               <Typography component="h1" variant="h4" gutterBottom>
-                Criar Conta
+                Create Account
               </Typography>
               
               <Typography variant="body2" color="text.secondary" textAlign="center">
-                Registe-se no KPS Treasury & Collateral Management System
+                Register in KPS Treasury & Collateral Management System
               </Typography>
             </Box>
 
@@ -235,7 +235,7 @@ export default function Register() {
                 transition={{ duration: 0.3 }}
               >
                 <Alert severity="error" sx={{ mb: 3 }}>
-                  {typeof error === "string" ? error : "Registo falhou. Tente novamente."}
+                  {typeof error === "string" ? error : "Registration failed. Please try again."}
                 </Alert>
               </motion.div>
             )}
@@ -247,7 +247,7 @@ export default function Register() {
                 transition={{ duration: 0.3 }}
               >
                 <Alert severity="success" sx={{ mb: 3 }}>
-                  Utilizador registado com sucesso! A redirecionar para o login...
+                  User registered successfully! Redirecting to login...
                 </Alert>
               </motion.div>
             )}
@@ -260,7 +260,7 @@ export default function Register() {
                     required
                     fullWidth
                     id="firstName"
-                    label="Nome"
+                    label="First Name"
                     name="firstName"
                     autoComplete="given-name"
                     value={formData.firstName}
@@ -283,7 +283,7 @@ export default function Register() {
                     required
                     fullWidth
                     id="lastName"
-                    label="Apelido"
+                    label="Last Name"
                     name="lastName"
                     autoComplete="family-name"
                     value={formData.lastName}
@@ -386,7 +386,7 @@ export default function Register() {
                 required
                 fullWidth
                 name="confirmPassword"
-                label="Confirmar Password"
+                label="Confirm Password"
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirmPassword"
                 autoComplete="new-password"
@@ -416,16 +416,16 @@ export default function Register() {
               />
 
               <FormControl fullWidth margin="normal" disabled={isSubmitting}>
-                <InputLabel id="role-label">Função</InputLabel>
+                <InputLabel id="role-label">Role</InputLabel>
                 <Select
                   labelId="role-label"
                   id="role"
                   name="role"
                   value={formData.role}
-                  label="Função"
+                  label="Role"
                   onChange={handleInputChange}
                 >
-                  <MenuItem value="USER">Utilizador</MenuItem>
+                  <MenuItem value="USER">User</MenuItem>
                   <MenuItem value="TREASURY">Treasury</MenuItem>
                   <MenuItem value="COLLATERAL">Collateral</MenuItem>
                 </Select>
@@ -445,7 +445,7 @@ export default function Register() {
                     disabled={!formData.username || !formData.password || !formData.email || !formData.firstName || !formData.lastName}
                     sx={{ py: 1.5, mb: 2 }}
                   >
-                    Criar Conta
+                    Create Account
                   </AnimatedButton>
                 )}
               </Box>
@@ -457,7 +457,7 @@ export default function Register() {
                   onClick={handleBackToLogin}
                   disabled={isSubmitting}
                 >
-                  Já tem uma conta? Faça login
+                  Already have an account? Sign in
                 </AnimatedButton>
               </Box>
             </Box>
